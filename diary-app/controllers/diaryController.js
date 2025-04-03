@@ -108,7 +108,7 @@ export const createEntry = async (req, res) => {
 export const updateEntry = async (req, res) => {
     try {
         // Extract the entry ID from request parameters
-        //const { id } = req.params;
+        const { id } = req.params;
 
         // Extract updated fields from request body
         const { title, content, location, tags, reflection, weather } = req.body;
