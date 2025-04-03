@@ -1,0 +1,195 @@
+
+ThoughtStream is a web app that lets users create, manage, and view diary entries.
+ It provides a RESTful API for submitting, retrieving, updating, and deleting entries, while integrating with a database
+
+
+Set up instructions:
+make sure you have the most recent node js and npm by running node -v and npm -v 
+if not istall those 
+
+install dependencies with : npm install express mongoose dotenv cors axios
+
+then start server with node server.js
+
+API usage guide:
+Endpoint: /api/diary
+
+Method: POST
+Request Body:
+
+{
+  "_id": "65a3fcd2d47b7a0012345678",
+  "user": "65a4fcd2d47b7a001234abcd",
+  "title": "Weekend Getaway",
+  "content": "Visited the coast today. The waves were beautiful.",
+  "reflection": "It was a peaceful and refreshing experience.",
+  "location": "Cannon Beach, US",
+  "createdAt": "2025-03-07T14:30:00Z",
+  "updatedAt": "2025-03-07T14:30:00Z",
+  "tags": ["travel", "nature"],
+  "weather": {
+    "condition": "Cloudy",
+    "temperature": 55,
+    "location": "Cannon Beach, US"
+  }
+}
+
+Response(success)
+{
+    "user": "65a4fcd2d47b7a001234abcd",
+    "title": "Weekend Getaway1",
+    "content": "Visited the coast today. The waves were beautiful.",
+    "reflection": "It was a peaceful and refreshing experience.",
+    "location": "Cannon Beach, US",
+    "tags": [
+        "travel",
+        "nature"
+    ],
+    "weather": {
+        "condition": "Cloudy",
+        "temperature": 55,
+        "location": "Cannon Beach, US"
+    },
+    "_id": "67ea02fa62c085cb73393a81",
+    "createdAt": "2025-03-31T02:50:34.671Z",
+    "updatedAt": "2025-03-31T02:50:34.671Z",
+    "__v": 0
+}
+Response(error)
+{
+  "message": "Title, content, and location are required."
+}
+
+
+Endpoint: /api/diary
+
+Method: GET
+Response(success)
+[
+    {
+        "weather": {
+            "condition": "Cloudy",
+            "temperature": 55,
+            "location": "Cannon Beach, US"
+        },
+        "_id": "67ea02fa62c085cb73393a81",
+        "user": "65a4fcd2d47b7a001234abcd",
+        "title": "Weekend Getaway1",
+        "content": "Visited the coast today. The waves were beautiful.",
+        "reflection": "It was a peaceful and refreshing experience.",
+        "location": "Cannon Beach, US",
+        "tags": [
+            "travel",
+            "nature"
+        ],
+        "createdAt": "2025-03-31T02:50:34.671Z",
+        "updatedAt": "2025-03-31T02:50:34.671Z",
+        "__v": 0
+    },
+    {
+        "weather": {
+            "condition": "Cloudy",
+            "temperature": 55,
+            "location": "Cannon Beach, US"
+        },
+        "_id": "67ea025562c085cb73393a7f",
+        "user": "65a4fcd2d47b7a001234abcd",
+        "title": "Weekend Getaway",
+        "content": "Visited the coast today. The waves were beautiful.",
+        "reflection": "It was a peaceful and refreshing experience.",
+        "location": "Cannon Beach, US",
+        "tags": [
+            "travel",
+            "nature"
+        ],
+        "createdAt": "2025-03-31T02:47:49.034Z",
+        "updatedAt": "2025-03-31T02:47:49.034Z",
+        "__v": 0
+    }
+    
+]
+
+Endpoint: /api/diary/:id
+
+Method: GET
+
+response(success)
+
+{
+    "weather": {
+        "condition": "Cloudy",
+        "temperature": 55,
+        "location": "Cannon Beach, US"
+    },
+    "_id": "67ea02fa62c085cb73393a81",
+    "user": "65a4fcd2d47b7a001234abcd",
+    "title": "Weekend Getaway1",
+    "content": "Visited the coast today. The waves were beautiful.",
+    "reflection": "It was a peaceful and refreshing experience.",
+    "location": "Cannon Beach, US",
+    "tags": [
+        "travel",
+        "nature"
+    ],
+    "createdAt": "2025-03-31T02:50:34.671Z",
+    "updatedAt": "2025-03-31T02:50:34.671Z",
+    "__v": 0
+}
+
+response(error)
+{
+  "message": "Server Error: Unable to retrieve diary entry"
+}
+
+Endpoint: /api/diary/:id
+
+Method: PUT
+request body:
+{
+  "title": "Updated Diary Entry",
+  "content": "Updated content",
+  "location": "New location",
+  "tags": ["updatedTag1", "updatedTag2"],
+  "reflection": "Updated reflection",
+  "weather": {"temperature": 75, "conditions": "Cloudy"}
+}
+response(success)
+{
+    "weather": {
+        "temperature": 75
+    },
+    "_id": "67ea02fa62c085cb73393a81",
+    "user": "65a4fcd2d47b7a001234abcd",
+    "title": "Updated Diary Entry",
+    "content": "Updated content",
+    "reflection": "Updated reflection",
+    "location": "New location",
+    "tags": [
+        "updatedTag1",
+        "updatedTag2"
+    ],
+    "createdAt": "2025-03-31T02:50:34.671Z",
+    "updatedAt": "2025-03-31T02:58:47.497Z",
+    "__v": 0
+}
+response(error):
+{
+  "message": "Diary entry not found"
+}
+
+Endpoint: /api/diary/:id
+
+Method: DELETE
+
+response(success):
+{
+  "message": "Diary entry deleted successfully"
+}
+response(error):
+{
+  "message": "Diary entry not found"
+}
+
+MONGO_URI=mongodb+srv://Inclass:passwordclass@cluster0.hflfyxg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+postman screenshots in documentation folder
